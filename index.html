@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="deviceMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="deviceQuantity" class="form-control text-center" value="1">
+                           <button id="devicePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="devicePrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="caseMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="caseQuantity" class="form-control text-center" value="1">
+                           <button id="casePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="casePrice">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subTotal">1,278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$ <span id="total">1,278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+
+   <script>
+
+      // device quantity plus button event handler
+      const devicePlusButton = document.getElementById('devicePlusBtn');
+      devicePlusButton.addEventListener('click', function(){
+
+         changeNumber('deviceQuantity', 1);
+         changePhonePrice('devicePrice', 1219);
+         changePhonePrice('subTotal', 1219);
+         changePhonePrice('total', 1219);
+
+         
+         
+      })
+
+      // case quantity plus button event handler
+      const casePlusButton = document.getElementById('casePlusBtn');
+      casePlusButton.addEventListener('click', function(){
+
+         changeNumber('caseQuantity', 1);
+         changeCasePrice('casePrice', 59);
+         changeCasePrice('subTotal', 59);
+         changeCasePrice('total', 59);
+
+      })
+
+      // device quantity minus button event handler
+      const deviceMinusButton = document.getElementById('deviceMinusBtn');
+      deviceMinusButton.addEventListener('click', function(){
+         changeNumber('deviceQuantity', -1);
+         changePhonePrice('devicePrice', -1219)
+         changePhonePrice('subTotal', -1219);
+         changePhonePrice('total', -1219);
+      })
+
+      // case quantity Minus button event handler
+      const caseMinusButton = document.getElementById('caseMinusBtn');
+      caseMinusButton.addEventListener('click', function(){
+
+         changeNumber('caseQuantity', -1);
+         changeCasePrice('casePrice', -59);
+         changeCasePrice('subTotal', -59);
+         changeCasePrice('total', -59);
+
+      })
+
+
+
+      function changeNumber(id, number){
+         const quantity = document.getElementById(id).value;
+         let quantityNumber = parseFloat(quantity);
+         quantityNumber = quantityNumber + number;
+         document.getElementById(id).value = quantityNumber;
+      };
+
+      function changePhonePrice(id, price){
+         const currentPrice1 = document.getElementById(id).innerText;
+         const currentPrice = currentPrice1.replace(',', '');
+         let currentPriceNumber= parseFloat(currentPrice);
+         currentPriceNumber = currentPriceNumber + price;
+         document.getElementById(id).innerText = currentPriceNumber;
+      }
+
+      function changeCasePrice(id, price){
+         const currentPrice1 = document.getElementById(id).innerText;
+         const currentPrice = currentPrice1.replace(',', '');
+         let currentPriceNumber= parseFloat(currentPrice);
+         currentPriceNumber = currentPriceNumber + price;
+         document.getElementById(id).innerText = currentPriceNumber;
+      }
+
+      
+
+   </script>
+</body>
+
+</html>
